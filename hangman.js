@@ -1,15 +1,35 @@
 const possibleWords = ["obdurate", "verisimillitude", "defenestrate", "obsequious", "dissonant", "toady", "idempotent"];
-var randomIndex = parseInt(Math.random()*possibleWords.length);
-var word = possibleWords[randomIndex];
+var word = "";
+var guesses = "";
 
 let newGame = function(){
     var randomIndex = parseInt(Math.random()*possibleWords.length);
-    var word = possibleWords[randomIndex];
+    word = possibleWords[randomIndex];
+    guesses = "";
 
+    updatePage();
+}
+let updatePage = function(){
     let clueString = "";
     for (let i = 0; i < word.length; i++){
-        clueString += "_ ";
+        var currentLetter = word.charAt(i);
+        if(guesses.indexOf(currentLetter) >= 0){
+            clueString += currentLetter + " ";
+        }else{
+            clueString += "_ ";
+        }
     }
     let clue = document.getElementById("clue");
     clue.textContent = clueString;
+
+    let guessArea = document.getElementById("guesses");
+    guessArea.textContent = "Guesses: " + guesses;
+}
+
+let guessLetter = function(){
+    let input = document.getElementById("guess");
+    let letter  = input.value;
+    guesses += letter;
+    updatePage();
+
 }
