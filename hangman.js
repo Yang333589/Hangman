@@ -41,6 +41,11 @@ let guessLetter = function(){
     }
     letter = letter.toLowerCase();
     guesses += letter;
+    input.value = "";
     updatePage();
 
 }
+
+//you won and you lost game
+//do not let ppl guess same letter the time
+//do not let ppl guess before the game starts or after the game ends
