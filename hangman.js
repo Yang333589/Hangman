@@ -27,10 +27,15 @@ let updatePage = function(){
     clue.textContent = clueString;
 
     let guessArea = document.getElementById("guesses");
-    guessArea.textContent = "Guesses: " + guesses;
-
+    if (clueString.indexOf("_") == -1){
+        guessArea.textContent = "You won!";
+    }else{
+        guessArea.textContent = "Guesses: " + guesses;
+    }
+    
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`;
+    
 }
 
 let guessLetter = function(){
