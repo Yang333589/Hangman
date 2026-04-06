@@ -29,10 +29,13 @@ let updatePage = function(){
     let guessArea = document.getElementById("guesses");
     if (clueString.indexOf("_") == -1){
         guessArea.textContent = "You won!";
+    }else if(guessCount === 0 && clueString.indexOf("_") >= 0){
+        guessArea.textContent = "You lost!";
     }else{
         guessArea.textContent = "Guesses: " + guesses;
     }
-    
+
+
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`;
     
