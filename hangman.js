@@ -4,9 +4,9 @@ var guesses = "";
 var guessCount;
 const MAXGUESS = 6;
 
-let newGame = function(){
+let newGame = function () {
     guessCount = MAXGUESS;
-    let randomIndex = parseInt(Math.random()*possibleWords.length);
+    let randomIndex = parseInt(Math.random() * possibleWords.length);
     word = possibleWords[randomIndex];
     guesses = "";
     let button = document.getElementById("button");
@@ -17,53 +17,54 @@ let newGame = function(){
     updatePage();
 }
 
-let updatePage = function(){
+let updatePage = function () {
     let input = document.getElementById("guess");
     let button = document.getElementById("button");
     let clueString = "";
-    for (let i = 0; i < word.length; i++){
+    for (let i = 0; i < word.length; i++) {
         var currentLetter = word.charAt(i);
-        if(guesses.indexOf(currentLetter) >= 0){
+        if (guesses.indexOf(currentLetter) >= 0) {
             clueString += currentLetter + " ";
-        }else{
+        } else {
             clueString += "_ ";
         }
+
     }
     let clue = document.getElementById("clue");
     clue.textContent = clueString;
 
     let guessArea = document.getElementById("guesses");
-    if (clueString.indexOf("_") == -1){
+    if (clueString.indexOf("_") == -1) {
         guessArea.textContent = "You won!";
         button.hidden = true;
         input.hidden = true;
-    }else if(guessCount === 0 && clueString.indexOf("_") >= 0){
+    } else if (guessCount === 0 && clueString.indexOf("_") >= 0) {
         guessArea.textContent = "You lost!";
         button.hidden = true;
         input.hidden = true;
-    }else{
+    } else {
         guessArea.textContent = "Guesses: " + guesses;
     }
 
 
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`;
-    
+
 }
 
-let guessLetter = function(){
+let guessLetter = function () {
     let input = document.getElementById("guess");
-    let letter  = input.value;
-    if(word.indexOf(letter) < 0){
+    let letter = input.value;
+    if (word.indexOf(letter) < 0 && guesses.indexOf(letter) <0) {
         guessCount--;
     }
     letter = letter.toLowerCase();
-    guesses += letter;
+    if (guesses.indexOf(letter) <0){
+        guesses += letter;
+    }
     input.value = "";
     updatePage();
 
 }
 
-//you won and you lost game
 //do not let ppl guess same letter the time
-//do not let ppl guess before the game starts or after the game ends
