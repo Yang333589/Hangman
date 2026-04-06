@@ -55,16 +55,14 @@ let updatePage = function () {
 let guessLetter = function () {
     let input = document.getElementById("guess");
     let letter = input.value;
-    if (word.indexOf(letter) < 0 && guesses.indexOf(letter) <0) {
+    if (word.indexOf(letter) < 0 && guesses.indexOf(letter) < 0) {
         guessCount--;
     }
     letter = letter.toLowerCase();
-    if (guesses.indexOf(letter) <0){
+    if (guesses.indexOf(letter) < 0) {
         guesses += letter;
     }
     input.value = "";
     updatePage();
 
 }
-
-//do not let ppl guess same letter the time
