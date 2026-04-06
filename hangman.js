@@ -9,11 +9,17 @@ let newGame = function(){
     let randomIndex = parseInt(Math.random()*possibleWords.length);
     word = possibleWords[randomIndex];
     guesses = "";
+    let button = document.getElementById("button");
+    button.hidden = false;
+    let input = document.getElementById("guess");
+    input.hidden = false;
 
     updatePage();
 }
 
 let updatePage = function(){
+    let input = document.getElementById("guess");
+    let button = document.getElementById("button");
     let clueString = "";
     for (let i = 0; i < word.length; i++){
         var currentLetter = word.charAt(i);
@@ -29,8 +35,12 @@ let updatePage = function(){
     let guessArea = document.getElementById("guesses");
     if (clueString.indexOf("_") == -1){
         guessArea.textContent = "You won!";
+        button.hidden = true;
+        input.hidden = true;
     }else if(guessCount === 0 && clueString.indexOf("_") >= 0){
         guessArea.textContent = "You lost!";
+        button.hidden = true;
+        input.hidden = true;
     }else{
         guessArea.textContent = "Guesses: " + guesses;
     }
